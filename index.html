@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Formatting Tools</title>
+    <title>MAC Address Formatter | Formatting Tools</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
@@ -13,25 +13,33 @@
     <p>Enter one MAC Address per row in the textarea below and press the button.</p>
     <textarea id="textarea-mac"></textarea>
     <button id="format-btn-mac">Format</button>
+    <button id="clear-btn-mac">Clear</button>
+    <hr/>
     <h2>Formatted MAC addresses</h2>
     <p id="output-mac"></p>
 
     <script>
       function onLoad() {
         document.getElementById('format-btn-mac').addEventListener('click', formatMac);
+        document.getElementById('clear-btn-mac').addEventListener('click', clearMac);
       }
 
       function formatMac() {
         const formattedAddr = [];
         const unformattedAddr = document.getElementById('textarea-mac').value.split('\n');
-        console.log('unformattedText:', unformattedAddr);
         for (let i = 0; i < unformattedAddr.length; i++) {
           const macAddr = unformattedAddr[i];
+
+          if (macAddr === '') continue; // skip empty lines
+
           formattedAddr.push(macAddr.replace(/(.{2})/g,"$1:").slice(0,-1).toUpperCase());
         }
 
-        console.log('formattedAddr:', formattedAddr);
         document.getElementById('output-mac').innerText = formattedAddr.join('\n');
+      }
+
+      function clearMac() {
+        document.getElementById('textarea-mac').value = '';
       }
 
       window.addEventListener('load', onLoad);
