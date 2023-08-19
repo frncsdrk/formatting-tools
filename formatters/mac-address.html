@@ -10,7 +10,10 @@
   <body>
     <h1><a href="/">Formatting Tools</a></h1>
     <h2>MAC Address Formatter</h2>
-    <p>Enter one MAC Address per row in the textarea below and press the button.</p>
+    <p>
+      Enter one MAC Address per line in the textarea below.
+      Formatting happens whenever you press the Enter key or you click the Format button.
+    </p>
     <textarea id="textarea-mac"></textarea>
     <button id="format-btn-mac">Format</button>
     <button id="clear-btn-mac">Clear</button>
@@ -22,6 +25,7 @@
       function onLoad() {
         document.getElementById('format-btn-mac').addEventListener('click', formatMac);
         document.getElementById('clear-btn-mac').addEventListener('click', clearMac);
+        window.addEventListener('keypress', onKeypress);
       }
 
       function formatMac() {
@@ -40,6 +44,13 @@
 
       function clearMac() {
         document.getElementById('textarea-mac').value = '';
+        document.getElementById('output-mac').innerText = '';
+      }
+
+      function onKeypress(e) {
+        if (e.keyCode === 13) {
+          formatMac();
+        }
       }
 
       window.addEventListener('load', onLoad);
