@@ -19,6 +19,10 @@
     <textarea id="textarea-mac"></textarea>
     <button id="format-btn-mac">Format</button>
     <button id="clear-btn-mac">Clear</button>
+    <div>
+      <input type="checkbox" id="chkbx-rm-empty-lines" checked>
+      <label for="chkbx-rm-empty-lines">Remove empty lines</label>
+    </div>
     <hr/>
     <h3>Formatted MAC addresses</h3>
     <div class="output-container">
@@ -37,12 +41,13 @@
       }
 
       function formatMac() {
+        const chkbxRmEmptyLines = document.getElementById('chkbx-rm-empty-lines').checked;
         const formattedAddr = [];
         const unformattedAddr = document.getElementById('textarea-mac').value.split('\n');
         for (let i = 0; i < unformattedAddr.length; i++) {
           const macAddr = unformattedAddr[i];
 
-          if (macAddr === '') continue; // skip empty lines
+          if (chkbxRmEmptyLines && macAddr === '') continue; // skip empty lines
 
           formattedAddr.push(macAddr.replace(/(.{2})/g,"$1:").slice(0,-1).toUpperCase());
         }
