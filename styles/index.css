@@ -10,3 +10,7 @@ label {
 .output-container {
   min-height: 300px;
 }
+
+.float-right {
+  float: right;
+}
