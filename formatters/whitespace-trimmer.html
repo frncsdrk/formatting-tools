@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>MAC Address Formatter | Formatting Tools</title>
+    <title>Whitespace Trimmer | Formatting Tools</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
@@ -11,22 +11,22 @@
     <header>
       <h1><a href="/">Formatting Tools</a></h1>
     </header>
-    <h2>MAC Address Formatter</h2>
+    <h2>Whitespace Trimmer</h2>
     <p>
-      Enter one MAC Address per line in the textarea below.
+      One entry per line.
       Formatting happens whenever you press the Enter key or you click the Format button.
     </p>
-    <textarea id="textarea-mac"></textarea>
-    <button id="format-btn-mac">Format</button>
-    <button id="clear-btn-mac">Clear</button>
+    <textarea id="textarea-input"></textarea>
+    <button id="format-btn">Format</button>
+    <button id="clear-btn">Clear</button>
     <div>
       <input type="checkbox" id="chkbx-rm-empty-lines" checked>
       <label for="chkbx-rm-empty-lines">Remove empty lines</label>
     </div>
     <hr/>
-    <h3>Formatted MAC addresses</h3>
+    <h3>Formatted Output</h3>
     <div class="output-container">
-      <p id="output-mac"></p>
+      <p id="output"></p>
     </div>
     <footer>
       <a href="https://github.com/frncsdrk/formatting-tools" target="_blank">GitHub</a>
@@ -35,34 +35,34 @@
 
     <script>
       function onLoad() {
-        document.getElementById('format-btn-mac').addEventListener('click', formatMac);
-        document.getElementById('clear-btn-mac').addEventListener('click', clearMac);
+        document.getElementById('format-btn').addEventListener('click', format);
+        document.getElementById('clear-btn').addEventListener('click', clear);
         window.addEventListener('keypress', onKeypress);
       }
 
-      function formatMac() {
+      function format() {
         const chkbxRmEmptyLines = document.getElementById('chkbx-rm-empty-lines').checked;
-        const formattedAddr = [];
-        const unformattedAddr = document.getElementById('textarea-mac').value.split('\n');
-        for (let i = 0; i < unformattedAddr.length; i++) {
-          const macAddr = unformattedAddr[i];
+        const formattedLines = [];
+        const unformattedLines = document.getElementById('textarea-input').value.split('\n');
+        for (let i = 0; i < unformattedLines.length; i++) {
+          const line = unformattedLines[i];
 
-          if (chkbxRmEmptyLines && macAddr === '') continue; // skip empty lines
+          if (chkbxRmEmptyLines && line === '') continue; // skip empty lines
 
-          formattedAddr.push(macAddr.replace(/(.{2})/g,"$1:").slice(0,-1).toUpperCase());
+          formattedLines.push(line.trim());
         }
 
-        document.getElementById('output-mac').innerText = formattedAddr.join('\n');
+        document.getElementById('output').innerText = formattedLines.join('\n');
       }
 
-      function clearMac() {
-        document.getElementById('textarea-mac').value = '';
-        document.getElementById('output-mac').innerText = '';
+      function clear() {
+        document.getElementById('textarea-input').value = '';
+        document.getElementById('output').innerText = '';
       }
 
       function onKeypress(e) {
         if (e.keyCode === 13) {
-          formatMac();
+          format();
         }
       }
 
