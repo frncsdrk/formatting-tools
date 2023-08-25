@@ -1,5 +1,8 @@
 # formatting-tools
 
+[![Vissit Website](https://img.shields.io/badge/Visit-Website-blue.svg)](https://formatting-tools.randomgoods.org)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/1e924fd7-1509-4be1-b542-84f59abc87fc/deploy-status)](https://app.netlify.com/sites/formatting-tools/deploys)
+
 Collection of various tools for formatting text
 
 ## Tools
