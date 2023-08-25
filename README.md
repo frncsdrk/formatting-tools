@@ -8,6 +8,8 @@ Collection of various tools for formatting text
 ## Tools
 
 - MAC address (aabbccddeeff -> AA:BB:CC:DD:EE:FF)
+- Whitespace Trimmer
+
 ## Contributions
 
 See [CONTRIBUTING](https://github.com/frncsdrk/formatting-tools/blob/main/CONTRIBUTING.md)
